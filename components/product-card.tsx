@@ -15,42 +15,65 @@ export function ProductCard({ product }: ProductCardProps) {
     : 0
 
   return (
-    <Card className="group overflow-hidden border-border hover:shadow-lg transition-shadow duration-300">
+    <Card className="group overflow-hidden border-border transition-all duration-300 hover:shadow-md">
+      {/* Imagem */}
       <div className="relative aspect-square overflow-hidden bg-secondary">
         {product.badge && (
-          <Badge className="absolute top-3 left-3 z-10 bg-primary text-primary-foreground">{product.badge}</Badge>
+          <Badge className="absolute top-2 left-2 z-10 text-[10px] px-2 py-0.5 bg-primary text-primary-foreground">
+            {product.badge}
+          </Badge>
         )}
+
         {discount > 0 && (
-          <Badge variant="secondary" className="absolute top-3 right-3 z-10 bg-foreground text-card">
+          <Badge className="absolute top-2 right-2 z-10 text-[10px] px-2 py-0.5 bg-foreground text-card">
             -{discount}%
           </Badge>
         )}
+
         <Image
           src={product.image || "/placeholder.svg"}
           alt={product.name}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
+          sizes="(max-width: 768px) 50vw, 25vw"
+          className="object-cover"
         />
       </div>
-      <CardContent className="p-4 space-y-3">
-        <h3 className="font-medium text-foreground line-clamp-2 min-h-[48px]">{product.name}</h3>
-        <div className="flex items-baseline gap-2">
-          <span className="text-xl font-bold text-primary">R$ {product.price.toFixed(2).replace(".", ",")}</span>
+
+      {/* Conteúdo */}
+      <CardContent className="p-3 space-y-1.5">
+        {/* Nome */}
+        <h3 className="text-[13px] leading-tight font-normal text-foreground line-clamp-2 min-h-[34px]">
+          {product.name}
+        </h3>
+
+        {/* Preços */}
+        <div className="flex flex-col leading-none">
+          <span className="text-[16px] font-bold text-primary">
+            R$ {product.price.toFixed(2).replace(".", ",")}
+          </span>
+
           {product.originalPrice && (
-            <span className="text-sm text-muted-foreground line-through">
+            <span className="text-[11px] text-muted-foreground line-through mt-0.5">
               R$ {product.originalPrice.toFixed(2).replace(".", ",")}
             </span>
           )}
         </div>
-        <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+
+
+        {/* Botão */}
+        <Button
+          asChild
+          className="w-full h-8 text-[10px] sm:text-[11px] md:text-[13px] font-medium bg-primary hover:bg-primary/90"
+        >
           <a
             href={product.affiliateLink}
             target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2"
+            rel="nofollow noopener noreferrer"
+            className="flex items-center justify-center gap-1.5"
+            aria-label={`Comprar ${product.name} na Shopee`}
           >
             Comprar na Shopee
-            <ExternalLink className="h-4 w-4" />
+            <ExternalLink className="h-3.5 w-3.5" />
           </a>
         </Button>
       </CardContent>
