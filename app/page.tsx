@@ -4,8 +4,8 @@ import { CategoryCard } from "@/components/category-card"
 import { products, categories } from "@/data/products"
 
 export default function HomePage() {
-  const featuredProducts = products.filter((p) => p.badge).slice(0, 4)
-  const latestProducts = products.slice(0, 8)
+  const featuredProducts = products.filter((p) => p.badge).slice(0, 5)
+  const latestProducts = products
 
   return (
     <>
