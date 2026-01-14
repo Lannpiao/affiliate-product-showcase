@@ -42,7 +42,7 @@ export function ProductCard({ product }: ProductCardProps) {
       {/* Conteúdo */}
       <CardContent className="p-3 space-y-1.5">
         {/* Nome */}
-        <h3 className="text-[13px] leading-tight font-normal text-foreground line-clamp-2 min-h-[34px]">
+        <h3 className="text-[14px] leading-tight font-semibold text-foreground line-clamp-2 min-h-[34px]">
           {product.name}
         </h3>
 

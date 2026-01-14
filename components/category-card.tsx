@@ -10,7 +10,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
   return (
     <Link href={`/categorias?cat=${category.slug}`}>
       <Card className="group hover:shadow-md transition-shadow cursor-pointer border-border">
-        <CardContent className="p-6 text-center">
+        <CardContent className="text-center">
           <span className="text-4xl mb-3 block">{category.icon}</span>
           <h3 className="font-medium text-foreground group-hover:text-primary transition-colors">{category.name}</h3>
         </CardContent>
