@@ -57,6 +57,9 @@ export function ProductCard({ product }: ProductCardProps) {
               R$ {product.originalPrice.toFixed(2).replace(".", ",")}
             </span>
           )}
+          <span className="text-[11px] text-muted-foreground mt-0.5">
+            {product.sales}
+          </span>
         </div>
 
 

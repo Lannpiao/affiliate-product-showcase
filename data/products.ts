@@ -7,6 +7,7 @@ export interface Product {
   category: string
   affiliateLink: string
   badge?: string
+  sales?: string
 }
 
 export interface Category {
@@ -40,6 +41,7 @@ export const products: Product[] = [
     category: "casa",
     affiliateLink: "https://s.shopee.com.br/3VdzU9v7o0",
     badge: "Mais Vendido",
+    sales: "100mil vendidos",
   },
   {
     id: "2",
@@ -50,6 +52,7 @@ export const products: Product[] = [
     category: "beleza",
     affiliateLink: "https://s.shopee.com.br/1qVlVx27zY",
     badge: "Oferta",
+    sales: "30mil vendidos",
   },
   {
     id: "3",
@@ -59,6 +62,7 @@ export const products: Product[] = [
     image: "/escovafinalizadorabeauty.jpeg",
     category: "beleza",
     affiliateLink: "https://s.shopee.com.br/7pmyfkCxa8",
+    sales: "30mil vendidos",
   },
   {
     id: "4",
@@ -69,6 +73,7 @@ export const products: Product[] = [
     category: "esportes",
     affiliateLink: "https://s.shopee.com.br/4VWWi12Q8o",
     badge: "Novo",
+    sales: "20mil vendidos",
   },
   {
     id: "5",
@@ -78,6 +83,7 @@ export const products: Product[] = [
     image: "/conjuntoxicarasprocelana.jpeg",
     category: "casa",
     affiliateLink: "https://s.shopee.com.br/2VlSKa42n7",
+    sales: "20mil vendidos",
   },
   {
     id: "6",
@@ -88,6 +94,7 @@ export const products: Product[] = [
     category: "casa",
     affiliateLink: "https://s.shopee.com.br/AUnkOWlna6",
     badge: "Novo",
+    sales: "20mil vendidos",
   },
   {
     id: "7",
@@ -98,6 +105,7 @@ export const products: Product[] = [
     category: "esportes",
     affiliateLink: "https://s.shopee.com.br/6puS1wMaZc",
     badge: "Novo",
+    sales: "50mil vendidos",
   },
   {
     id: "8",
@@ -108,6 +116,7 @@ export const products: Product[] = [
     category: "esportes",
     affiliateLink: "https://s.shopee.com.br/9Kbn0pNKZ3",
     badge: "Novo",
+    sales: "14mil vendidos",
   },
   {
     id: "9",
@@ -118,6 +127,7 @@ export const products: Product[] = [
     category: "esportes",
     affiliateLink: "https://s.shopee.com.br/9fEdZM6oqM",
     badge: "Novo",
+    sales: "3mil vendidos",
   },
   {
     id: "10",
@@ -128,6 +138,7 @@ export const products: Product[] = [
     category: "beleza",
     affiliateLink: "https://s.shopee.com.br/2VlT2qQPNr",
     badge: "Novo",
+    sales: "100mil vendidos",
   },
   {
     id: "11",
@@ -138,6 +149,7 @@ export const products: Product[] = [
     category: "casa",
     affiliateLink: "https://s.shopee.com.br/5AmEDyarW4",
     badge: "Novo",
+    sales: "30mil vendidos",
   },
   {
     id: "12",
@@ -148,16 +160,18 @@ export const products: Product[] = [
     category: "esportes",
     affiliateLink: "https://s.shopee.com.br/2qOJS0FbB9",
     badge: "Novo",
+    sales: "5mil vendidos",
   },
   {
     id: "13",
-    name: "Kit Treino Funcional 10/15/20kg Halteres Barra Supino Kettlebell Preto",
+    name: "Tênis Esportivo Masculino Original Confortável Para Diversos Esportes",
     price: 59.9,
     originalPrice: 99.9,
     image: "/tenisesportivomasculinoorg.jpeg",
     category: "esportes",
     affiliateLink: "https://s.shopee.com.br/4VWXRGzk10",
     badge: "Novo",
+    sales: "10mil vendidos",
   },
   {
     id: "14",
@@ -168,6 +182,7 @@ export const products: Product[] = [
     category: "eletronicos",
     affiliateLink: "https://s.shopee.com.br/5q1v1zsGXy",
     badge: "Novo",
+    sales: "20mil vendidos",
   },
   {
     id: "15",
@@ -178,6 +193,7 @@ export const products: Product[] = [
     category: "casa",
     affiliateLink: "https://s.shopee.com.br/20pCaVxjAN",
     badge: "Novo",
+    sales: "6mil vendidos",
   },
   {
     id: "16",
@@ -188,6 +204,7 @@ export const products: Product[] = [
     category: "eletronicos",
     affiliateLink: "https://s.shopee.com.br/6KyBkQQqMD",
     badge: "Novo",
+    sales: "2mil vendidos",
   },
   {
     id: "17",
@@ -198,6 +215,7 @@ export const products: Product[] = [
     category: "moda",
     affiliateLink: "https://s.shopee.com.br/9KbnWuXtb6",
     badge: "Oferta",
+    sales: "60mil vendidos",
   },
   {
     id: "18",
@@ -208,6 +226,7 @@ export const products: Product[] = [
     category: "acessorios",
     affiliateLink: "https://s.shopee.com.br/30hjzg7uFr",
     badge: "Oferta",
+    sales: "80mil vendidos",
   },
   {
     id: "19",
@@ -218,6 +237,7 @@ export const products: Product[] = [
     category: "moda",
     affiliateLink: "https://s.shopee.com.br/5q1vNBXqVi",
     badge: "Oferta",
+    sales: "10mil vendidos",
   },
   {
     id: "20",
@@ -228,16 +248,18 @@ export const products: Product[] = [
     category: "moda",
     affiliateLink: "https://s.shopee.com.br/7KqjAV9Sam",
     badge: "Oferta",
+    sales: "50mil vendidos",
   },
   {
     id: "21",
-    name: "Vestido Midi Tomara que Caia Canelado - Elegância e Conforto em um Único Vestido! TECIDO ANARRUGA!",
+    name: "Alicate de Pressão Em Aço Carbono Com Mordente Curvo 10 Polegadas 250mm",
     price: 22.59,
     originalPrice: 37.75,
     image: "/alicatedepressao.jpeg",
     category: "ferramentas",
     affiliateLink: "https://s.shopee.com.br/W0P2E1jhC",
     badge: "Oferta",
+    sales: "3mil vendidos",
   },
   {
     id: "22",
@@ -248,6 +270,7 @@ export const products: Product[] = [
     category: "moda",
     affiliateLink: "https://s.shopee.com.br/9AINN5tuun",
     badge: "Oferta",
+    sales: "20mil vendidos",
   },
   {
     id: "23",
@@ -258,6 +281,7 @@ export const products: Product[] = [
     category: "casa",
     affiliateLink: "https://s.shopee.com.br/1LZW2vZc3p",
     badge: "Oferta",
+    sales: "30mil vendidos",
   },
   {
     id: "24",
@@ -268,6 +292,7 @@ export const products: Product[] = [
     category: "moda",
     affiliateLink: "https://s.shopee.com.br/30hk2RDYeQ",
     badge: "Oferta",
+    sales: "10mil vendidos",
   },
   {
     id: "25",
@@ -278,6 +303,18 @@ export const products: Product[] = [
     category: "ferramentas",
     affiliateLink: "https://s.shopee.com.br/60LLcE44LR",
     badge: "Oferta",
+    sales: "30mil vendidos",
+  },
+  {
+    id: "26",
+    name: "caneca Kit Garrafa Térmica Vacuum Bottle Inox 500ml + 3 Xícaras Bebidas Fria ou Quente",
+    price: 29.98,
+    originalPrice: 60.0,
+    image: "/kitgarrafatermica.jpeg",
+    category: "ferramentas",
+    affiliateLink: "https://s.shopee.com.br/1LZW4fISB2",
+    badge: "Oferta",
+    sales: "100mil vendidos",
   },
   
 ]
