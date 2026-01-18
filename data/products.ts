@@ -444,7 +444,7 @@ export const products: Product[] = [
     originalPrice: 69.9,
     image: "/camisetamasculina.jpeg",
     category: "moda",
-    affiliateLink: "https://s.shopee.com.br/50StZtvUlX",
+    affiliateLink: "https://s.shopee.com.br/6VHiWh2q4S",
     badge: "Novo",
     sales: "5mil vendidos",
   },
