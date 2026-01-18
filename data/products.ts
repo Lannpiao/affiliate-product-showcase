@@ -418,7 +418,7 @@ export const products: Product[] = [
   {
     id: "36",
     name: "Jogo De Ferramentas Com Maleta 12 Peças Titanium",
-    price: 18.88,
+    price: 19.88,
     originalPrice: 88.88,
     image: "/kitferramentas12.png",
     category: "ferramentas",
@@ -457,7 +457,7 @@ export const products: Product[] = [
     category: "moda",
     affiliateLink: "https://s.shopee.com.br/gJva2ad55",
     badge: "Novo",
-    sales: "5mil vendidos",
+    sales: "4mil vendidos",
   },
   {
     id: "40",
@@ -468,7 +468,18 @@ export const products: Product[] = [
     category: "moda",
     affiliateLink: "https://s.shopee.com.br/20pJAXlwMq",
     badge: "Novo",
-    sales: "5mil vendidos",
+    sales: "3mil vendidos",
+  },
+  {
+    id: "41",
+    name: "Meia Calça Arrastão Cosplay Fantasia Carnaval",
+    price: 13.99,
+    originalPrice: 26.8,
+    image: "/meiacalçacolorida.jpeg",
+    category: "moda",
+    affiliateLink: "https://s.shopee.com.br/8APwW1KlBh",
+    badge: "Novo",
+    sales: "1mil vendidos",
   },
   
 ]
