@@ -13,12 +13,12 @@ export function Hero() {
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl text-primary">
               Carnaval
           </h1>
-          <p className="mt-6 text-lg text-card/80 leading-relaxed">
+          <p className="mt-6 text-lg text-white leading-relaxed">
             Selecionamos os melhores produtos da Shopee para você. Encontre ofertas exclusivas e economize em suas
             compras.
           </p>
           <div className="mt-10 flex gap-4">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white">
               <Link href="/categorias?cat=carnaval">
                 Ver Produtos
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -28,7 +28,7 @@ export function Hero() {
               asChild
               variant="outline"
               size="lg"
-              className="border-card/30 text-card hover:bg-card/10 bg-transparent"
+              className="border-card/30 text-white hover:bg-card/10 bg-transparent"
             >
               <Link href="/sobre">Saiba Mais</Link>
             </Button>
