@@ -385,7 +385,7 @@ export const products: Product[] = [
   },
   {
     id: "33",
-    name: "Kit Material Escolar Completo",
+    name: "Kit 4 Camiseta Dry Masculina Manga Curta Fitness",
     price: 59.94,
     originalPrice: 99.90,
     image: "/kitcamisadryfit.webp",
