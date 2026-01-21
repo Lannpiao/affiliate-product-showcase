@@ -9,10 +9,38 @@ import "./globals.css"
 const _inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Zivoo - Vitrine de Produtos com as Melhores Ofertas",
+  title: {
+    default: "Zivoo | Ofertas e Produtos da Shopee",
+    template: "%s | Zivoo",
+  },
   description:
-    "Descubra produtos incríveis da Shopee com os melhores preços. Eletrônicos, moda, casa, beleza e muito mais.",
-  generator: "v0.app",
+    "Zivoo é uma vitrine inteligente de produtos da Shopee com links afiliados. Encontre eletrônicos, moda, casa, beleza e ofertas atualizadas.",
+  keywords: [
+    "ofertas shopee",
+    "produtos shopee",
+    "promoções shopee",
+    "vitrine shopee",
+    "links afiliados shopee",
+  ],
+  authors: [{ name: "Zivoo" }],
+  creator: "Zivoo",
+  metadataBase: new URL("https://zivoobuy.store/"),
+
+  openGraph: {
+    title: "Zivoo | Vitrine de Ofertas da Shopee",
+    description:
+      "Descubra produtos da Shopee com links diretos. Menos cliques, mais economia.",
+    url: "https://zivoobuy.store/",
+    siteName: "Zivoo",
+    locale: "pt_BR",
+    type: "website",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
   icons: {
     icon: [
       {
@@ -31,6 +59,7 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
 }
+
 
 export default function RootLayout({
   children,
