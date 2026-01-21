@@ -84,7 +84,21 @@ export default function HomePage() {
             className="h-10"
           />
         )}
+        <section className="mt-24 mb-24 max-w-4xl mx-auto px-4 text-sm text-muted-foreground">
+          <h2 className="text-xl font-semibold mb-4 text-foreground">
+            Ofertas e produtos da Shopee em um só lugar
+          </h2>
+
+          <p className="leading-relaxed">
+            A Zivoo é uma vitrine digital que reúne produtos selecionados
+            da Shopee, organizados por categoria e com links afiliados
+            que levam direto ao produto oficial. Ideal para quem busca
+            praticidade, economia e ofertas atualizadas.
+          </p>
+        </section>
       </div>
+      
+
     </>
   )
 }
