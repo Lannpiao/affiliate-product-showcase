@@ -636,5 +636,27 @@ export const products: Product[] = [
     badge: "Novo",
     sales: "2mil vendidos",
   },
+  {
+    id: "57",
+    name: "Conjuntos Pijamas Baby Doll Feminino",
+    price: 37.99,
+    originalPrice: 49.99,
+    image: "/conjuntobabydollcoracao.webp",
+    category: "moda",
+    affiliateLink: "https://s.shopee.com.br/qdQ6dCHIn",
+    badge: "Novo",
+    sales: "1mil vendidos",
+  },
+  {
+    id: "58",
+    name: "Creme Brilho Labial à Prova d'Água com Longa Duração",
+    price: 11.78,
+    originalPrice: 19.9,
+    image: "/cremebrihlolabial.jpeg",
+    category: "beleza",
+    affiliateLink: "https://s.shopee.com.br/2g53VepEVG",
+    badge: "Novo",
+    sales: "20mil vendidos",
+  },
   
 ]
