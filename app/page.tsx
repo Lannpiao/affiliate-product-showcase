@@ -9,26 +9,50 @@ import { products, categories } from "@/data/products"
 
 const PRODUCTS_PER_PAGE = 8
 
-// 🔍 Normalização de texto (acento, plural, etc.)
+/**
+ * Normaliza textos para a busca:
+ * - lowercase
+ * - remove acentos
+ * - converte plural simples → singular
+ */
 function normalizeText(text: string) {
   return text
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "") // remove acentos
-    .replace(/\b(s|es|ns|is)\b/g, "") // plural simples
+    .split(" ")
+    .map((word) => {
+      if (word.endsWith("es")) return word.slice(0, -2)
+      if (word.endsWith("s")) return word.slice(0, -1)
+      return word
+    })
+    .join(" ")
     .trim()
 }
 
 export default function HomePage() {
+  /* Texto digitado na busca */
   const [search, setSearch] = useState("")
-  const [visibleCount, setVisibleCount] = useState(PRODUCTS_PER_PAGE)
+
+  /* Quantidade de produtos visíveis (scroll infinito) */
+  const [visibleCount, setVisibleCount] =
+    useState(PRODUCTS_PER_PAGE)
+
+  /* Estado de loading do scroll infinito */
   const [isLoading, setIsLoading] = useState(false)
+
+  /* Referência do gatilho do IntersectionObserver */
   const loaderRef = useRef<HTMLDivElement | null>(null)
 
+  /* Texto da busca normalizado */
   const normalizedSearch =
     search.length < 2 ? "" : normalizeText(search)
 
-  // 🔍 Filtro inteligente
+  /**
+   * Lista de produtos filtrados pela busca
+   * Busca por nome e categoria
+   * Aceita palavras fora de ordem
+   */
   const filteredProducts = products.filter((product) => {
     if (!normalizedSearch) return true
 
@@ -43,12 +67,19 @@ export default function HomePage() {
     )
   })
 
-  // ⭐ Destaques respeitando busca
+  /**
+   * Produtos em destaque
+   * Só usados quando NÃO há busca ativa
+   */
   const featuredProducts = filteredProducts
     .filter((p) => p.badge)
     .slice(0, 5)
 
-  // ♾️ Scroll infinito
+  /**
+   * Scroll infinito
+   * Carrega mais produtos quando o usuário
+   * chega próximo ao final da lista
+   */
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -59,6 +90,7 @@ export default function HomePage() {
         ) {
           setIsLoading(true)
 
+          // Simula tempo de carregamento (UX)
           setTimeout(() => {
             setVisibleCount((prev) =>
               Math.min(
@@ -77,13 +109,17 @@ export default function HomePage() {
     return () => observer.disconnect()
   }, [isLoading, visibleCount, filteredProducts.length])
 
-  const visibleProducts = filteredProducts.slice(0, visibleCount)
+  /* Produtos realmente exibidos na tela */
+  const visibleProducts = filteredProducts.slice(
+    0,
+    visibleCount
+  )
 
   return (
     <>
       <Hero />
 
-      {/* 🔍 Busca */}
+      {/* 🔍 Campo de busca */}
       <div className="mx-auto max-w-7xl px-4 lg:px-8 mt-8">
         <input
           type="text"
@@ -98,7 +134,7 @@ export default function HomePage() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        {/* 📂 Categorias somem ao buscar */}
+        {/* 📂 Categorias só aparecem sem busca */}
         {search.trim() === "" && (
           <section className="py-12">
             <h2 className="text-2xl font-bold mb-8">
@@ -116,15 +152,16 @@ export default function HomePage() {
           </section>
         )}
 
-        {/* ⭐ Destaques */}
-        {featuredProducts.length > 0 && (
-          <ProductGrid
-            products={featuredProducts}
-            title="Destaques"
-          />
-        )}
+        {/* ⭐ Destaques só aparecem sem busca */}
+        {search.trim() === "" &&
+          featuredProducts.length > 0 && (
+            <ProductGrid
+              products={featuredProducts}
+              title="Destaques"
+            />
+          )}
 
-        {/* 🛒 Resultados */}
+        {/* 🛒 Lista principal de produtos */}
         <ProductGrid
           products={visibleProducts}
           title={
@@ -134,18 +171,18 @@ export default function HomePage() {
           }
         />
 
-        {/* ⏳ Skeleton */}
+        {/* ⏳ Skeleton durante carregamento */}
         {isLoading && (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
-            {Array.from({ length: PRODUCTS_PER_PAGE }).map(
-              (_, i) => (
-                <ProductSkeleton key={i} />
-              )
-            )}
+            {Array.from({
+              length: PRODUCTS_PER_PAGE,
+            }).map((_, i) => (
+              <ProductSkeleton key={i} />
+            ))}
           </div>
         )}
 
-        {/* ❌ Nenhum resultado */}
+        {/* ❌ Nenhum resultado encontrado */}
         {!isLoading &&
           visibleProducts.length === 0 &&
           search && (
@@ -154,11 +191,12 @@ export default function HomePage() {
             </p>
           )}
 
-        {/* ♾️ Gatilho do scroll */}
+        {/* ♾️ Gatilho do scroll infinito */}
         {visibleCount < filteredProducts.length && (
           <div ref={loaderRef} className="h-10" />
         )}
 
+        {/* 📄 Texto institucional */}
         <section className="mt-24 mb-24 max-w-4xl mx-auto px-4 text-sm text-muted-foreground">
           <h2 className="text-xl font-semibold mb-4 text-foreground">
             Ofertas e produtos da Shopee em um só lugar
