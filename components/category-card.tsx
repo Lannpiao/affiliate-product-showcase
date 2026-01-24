@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
-import type { Category } from "@/data/products"
+import type { Category } from "@/data/categories"
 
 interface CategoryCardProps {
   category: Category

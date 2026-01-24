@@ -5,7 +5,8 @@ import { Hero } from "@/components/hero"
 import { ProductGrid } from "@/components/product-grid"
 import { CategoryCard } from "@/components/category-card"
 import { ProductSkeleton } from "@/components/ui/product-skeleton"
-import { products, categories } from "@/data/products"
+import { categories } from "@/data/categories"
+import { getProducts } from "@/lib/get-products"
 
 const PRODUCTS_PER_PAGE = 8
 
@@ -19,7 +20,7 @@ function normalizeText(text: string) {
   return text
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "") // remove acentos
+    .replace(/[\u0300-\u036f]/g, "")
     .split(" ")
     .map((word) => {
       if (word.endsWith("es")) return word.slice(0, -2)
@@ -31,27 +32,35 @@ function normalizeText(text: string) {
 }
 
 export default function HomePage() {
+  /* 🔥 PRODUTOS VINDOS DO SUPABASE */
+  const [products, setProducts] = useState<any[]>([])
+
   /* Texto digitado na busca */
   const [search, setSearch] = useState("")
 
-  /* Quantidade de produtos visíveis (scroll infinito) */
+  /* Scroll infinito */
   const [visibleCount, setVisibleCount] =
     useState(PRODUCTS_PER_PAGE)
 
-  /* Estado de loading do scroll infinito */
   const [isLoading, setIsLoading] = useState(false)
-
-  /* Referência do gatilho do IntersectionObserver */
   const loaderRef = useRef<HTMLDivElement | null>(null)
+
+  /* 🔗 Busca os produtos do Supabase ao carregar a página */
+  useEffect(() => {
+    async function loadProducts() {
+      const data = await getProducts()
+      setProducts(data)
+    }
+
+    loadProducts()
+  }, [])
 
   /* Texto da busca normalizado */
   const normalizedSearch =
     search.length < 2 ? "" : normalizeText(search)
 
   /**
-   * Lista de produtos filtrados pela busca
-   * Busca por nome e categoria
-   * Aceita palavras fora de ordem
+   * Produtos filtrados pela busca
    */
   const filteredProducts = products.filter((product) => {
     if (!normalizedSearch) return true
@@ -68,8 +77,7 @@ export default function HomePage() {
   })
 
   /**
-   * Produtos em destaque
-   * Só usados quando NÃO há busca ativa
+   * Destaques (somem quando há busca)
    */
   const featuredProducts = filteredProducts
     .filter((p) => p.badge)
@@ -77,8 +85,6 @@ export default function HomePage() {
 
   /**
    * Scroll infinito
-   * Carrega mais produtos quando o usuário
-   * chega próximo ao final da lista
    */
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -90,7 +96,6 @@ export default function HomePage() {
         ) {
           setIsLoading(true)
 
-          // Simula tempo de carregamento (UX)
           setTimeout(() => {
             setVisibleCount((prev) =>
               Math.min(
@@ -109,7 +114,6 @@ export default function HomePage() {
     return () => observer.disconnect()
   }, [isLoading, visibleCount, filteredProducts.length])
 
-  /* Produtos realmente exibidos na tela */
   const visibleProducts = filteredProducts.slice(
     0,
     visibleCount
@@ -134,7 +138,7 @@ export default function HomePage() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        {/* 📂 Categorias só aparecem sem busca */}
+        {/* 📂 Categorias só sem busca */}
         {search.trim() === "" && (
           <section className="py-12">
             <h2 className="text-2xl font-bold mb-8">
@@ -152,7 +156,7 @@ export default function HomePage() {
           </section>
         )}
 
-        {/* ⭐ Destaques só aparecem sem busca */}
+        {/* ⭐ Destaques só sem busca */}
         {search.trim() === "" &&
           featuredProducts.length > 0 && (
             <ProductGrid
@@ -161,7 +165,7 @@ export default function HomePage() {
             />
           )}
 
-        {/* 🛒 Lista principal de produtos */}
+        {/* 🛒 Produtos */}
         <ProductGrid
           products={visibleProducts}
           title={
@@ -171,7 +175,7 @@ export default function HomePage() {
           }
         />
 
-        {/* ⏳ Skeleton durante carregamento */}
+        {/* ⏳ Skeleton */}
         {isLoading && (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
             {Array.from({
@@ -182,7 +186,7 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* ❌ Nenhum resultado encontrado */}
+        {/* ❌ Nenhum resultado */}
         {!isLoading &&
           visibleProducts.length === 0 &&
           search && (
@@ -191,24 +195,10 @@ export default function HomePage() {
             </p>
           )}
 
-        {/* ♾️ Gatilho do scroll infinito */}
+        {/* ♾️ Scroll trigger */}
         {visibleCount < filteredProducts.length && (
           <div ref={loaderRef} className="h-10" />
         )}
-
-        {/* 📄 Texto institucional */}
-        <section className="mt-24 mb-24 max-w-4xl mx-auto px-4 text-sm text-muted-foreground">
-          <h2 className="text-xl font-semibold mb-4 text-foreground">
-            Ofertas e produtos da Shopee em um só lugar
-          </h2>
-
-          <p className="leading-relaxed">
-            A Zivoo é uma vitrine digital que reúne produtos
-            selecionados da Shopee, organizados por categoria
-            e com links afiliados que levam direto ao produto
-            oficial.
-          </p>
-        </section>
       </div>
     </>
   )
