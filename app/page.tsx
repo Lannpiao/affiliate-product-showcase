@@ -121,6 +121,8 @@ export default function HomePage() {
 
   return (
     <>
+      <link rel="canonical" href="https://SEUSITE.com/pagina-principal" />
+
       <Hero />
 
       {/* 🔍 Campo de busca */}
